@@ -62,7 +62,9 @@ export default function RegisterPage() {
   };
 
   const handleGoogleSignup = () => {
-    window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/api/auth/google`;
+    if (typeof window !== 'undefined') {
+      window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/api/auth/google`;
+    }
   };
 
   if (success) {
