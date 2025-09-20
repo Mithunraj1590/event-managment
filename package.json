@@ -6,10 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "server": "node server.js",
-    "server:dev": "nodemon server.js",
-    "dev:full": "concurrently \"npm run server:dev\" \"npm run dev\""
+    "lint": "eslint"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

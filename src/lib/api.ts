@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
 class ApiClient {
   private baseURL: string;
@@ -150,7 +150,7 @@ class ApiClient {
   }
 
   async joinEvent(id: string) {
-    return this.request(`/api/events/${id}/join`, {
+    return this.request(`/api/events/join/${id}`, {
       method: 'POST',
     });
   }
@@ -163,7 +163,7 @@ class ApiClient {
 
   async getUserEvents(type?: 'created' | 'joined' | 'all') {
     const params = type ? `?type=${type}` : '';
-    return this.request(`/api/events/user/my-events${params}`);
+    return this.request(`/api/events/my-events${params}`);
   }
 
   // User endpoints
