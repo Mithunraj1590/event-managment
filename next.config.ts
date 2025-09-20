@@ -10,6 +10,10 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react'],
   },
+  // Ensure API routes are properly handled
+  async rewrites() {
+    return [];
+  },
 };
 
 export default nextConfig;

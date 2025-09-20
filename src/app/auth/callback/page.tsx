@@ -23,7 +23,7 @@ function AuthCallbackContent() {
       localStorage.setItem('token', token);
       
       // Fetch user data and login
-      fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/me`, {
+      fetch('/api/auth/me', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
