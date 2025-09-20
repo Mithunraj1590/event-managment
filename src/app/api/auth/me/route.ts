@@ -1,7 +1,7 @@
 // Get current user API route for Next.js 15 App Router
 import jwt from 'jsonwebtoken';
-import connectDB from '../../../../lib/mongodb.js';
-import User from '../../../../models/User.js';
+import connectDB from '../../../../../lib/mongodb.js';
+import User from '../../../../../models/User.js';
 
 async function authenticateToken(request: Request) {
   const token = request.headers.get('authorization')?.replace('Bearer ', '');

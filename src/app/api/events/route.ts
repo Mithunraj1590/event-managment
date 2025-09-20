@@ -1,8 +1,8 @@
 // Events API route for Next.js 15 App Router
-import Event from '../../../../models/Event.js';
+import Event from '../../../../../models/Event.js';
 import jwt from 'jsonwebtoken';
-import connectDB from '../../../../lib/mongodb.js';
-import User from '../../../../models/User.js';
+import connectDB from '../../../../../lib/mongodb.js';
+import User from '../../../../../models/User.js';
 
 console.log('Events API route loaded');
 console.log('Event model:', Event);

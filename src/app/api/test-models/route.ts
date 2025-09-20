@@ -6,9 +6,9 @@ export async function GET() {
     console.log('Attempting to import models...');
     
     // Try to import models
-    const Event = await import('../../../../models/Event.js');
-    const User = await import('../../../../models/User.js');
-    const connectDB = await import('../../../../lib/mongodb.js');
+    const Event = await import('../../../../../models/Event.js');
+    const User = await import('../../../../../models/User.js');
+    const connectDB = await import('../../../../../lib/mongodb.js');
     
     console.log('Models imported successfully');
     console.log('Event model:', Event.default);

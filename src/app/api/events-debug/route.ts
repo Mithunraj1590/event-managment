@@ -4,7 +4,7 @@ export async function GET() {
   
   try {
     console.log('Step 1: Importing connectDB...');
-    const { default: connectDB } = await import('../../../../lib/mongodb.js');
+    const { default: connectDB } = await import('../../../../../lib/mongodb.js');
     console.log('Step 1: connectDB imported successfully');
     
     console.log('Step 2: Attempting database connection...');
@@ -12,7 +12,7 @@ export async function GET() {
     console.log('Step 2: Database connected successfully');
     
     console.log('Step 3: Importing Event model...');
-    const { default: Event } = await import('../../../../models/Event.js');
+    const { default: Event } = await import('../../../../../models/Event.js');
     console.log('Step 3: Event model imported successfully');
     
     console.log('Step 4: Attempting to find events...');
