@@ -17,13 +17,13 @@
     }
   ],
   "env": {
-    "MONGODB_URI": "@mongodb_uri",
-    "JWT_SECRET": "@jwt_secret",
-    "SESSION_SECRET": "@session_secret",
-    "GOOGLE_CLIENT_ID": "@google_client_id",
-    "GOOGLE_CLIENT_SECRET": "@google_client_secret",
-    "EMAIL_USER": "@email_user",
-    "EMAIL_PASS": "@email_pass",
-    "EMAIL_FROM": "@email_from"
+    "MONGODB_URI": "$MONGODB_URI",
+    "JWT_SECRET": "$JWT_SECRET",
+    "SESSION_SECRET": "$SESSION_SECRET",
+    "GOOGLE_CLIENT_ID": "$GOOGLE_CLIENT_ID",
+    "GOOGLE_CLIENT_SECRET": "$GOOGLE_CLIENT_SECRET",
+    "EMAIL_USER": "$EMAIL_USER",
+    "EMAIL_PASS": "$EMAIL_PASS",
+    "EMAIL_FROM": "$EMAIL_FROM"
   }
 }

@@ -36,22 +36,43 @@ Your event management app has been successfully converted to deploy everything o
 
 ### **Step 1: Set Up Environment Variables**
 
-Run the setup script:
+#### **Method 1: Using Vercel Dashboard (Recommended)**
+
+1. Go to your Vercel dashboard
+2. Select your project
+3. Go to **Settings** → **Environment Variables**
+4. Add each variable with these exact names:
+
+| Variable Name | Value | Description |
+|---------------|-------|-------------|
+| `MONGODB_URI` | `mongodb+srv://username:password@cluster.mongodb.net/event-management` | Your MongoDB Atlas connection string |
+| `JWT_SECRET` | `your-super-secret-jwt-key-here-make-it-long-and-random` | Random string for JWT signing |
+| `SESSION_SECRET` | `your-super-secret-session-key-here-make-it-long-and-random` | Random string for sessions |
+| `GOOGLE_CLIENT_ID` | `your-google-client-id` | From Google Cloud Console |
+| `GOOGLE_CLIENT_SECRET` | `your-google-client-secret` | From Google Cloud Console |
+| `EMAIL_USER` | `your-gmail-email@gmail.com` | Your Gmail address |
+| `EMAIL_PASS` | `your-gmail-app-password` | Gmail App Password (not regular password) |
+| `EMAIL_FROM` | `your-gmail-email@gmail.com` | Same as EMAIL_USER |
+
+**Important**: Make sure to set these for **Production**, **Preview**, and **Development** environments.
+
+#### **Method 2: Using Vercel CLI**
+
+Run the setup script to get the values:
 ```bash
 .\setup-vercel-env.bat
 ```
 
-Or manually add these to your Vercel dashboard:
-
-```env
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/event-management
-JWT_SECRET=your-super-secret-jwt-key-here-make-it-long-and-random
-SESSION_SECRET=your-super-secret-session-key-here-make-it-long-and-random
-GOOGLE_CLIENT_ID=your-google-client-id
-GOOGLE_CLIENT_SECRET=your-google-client-secret
-EMAIL_USER=your-gmail-email@gmail.com
-EMAIL_PASS=your-gmail-app-password
-EMAIL_FROM=your-gmail-email@gmail.com
+Then add them using Vercel CLI:
+```bash
+vercel env add MONGODB_URI
+vercel env add JWT_SECRET
+vercel env add SESSION_SECRET
+vercel env add GOOGLE_CLIENT_ID
+vercel env add GOOGLE_CLIENT_SECRET
+vercel env add EMAIL_USER
+vercel env add EMAIL_PASS
+vercel env add EMAIL_FROM
 ```
 
 ### **Step 2: Deploy to Vercel**
@@ -174,15 +195,45 @@ Your app now has these API endpoints:
 
 ## 🚨 **Troubleshooting**
 
+### **"MongoDB URL Reference Secret Do Not Exist" Error**
+
+This error occurs when Vercel can't find the environment variables. Here's how to fix it:
+
+1. **Check Environment Variables in Vercel Dashboard**:
+   - Go to your Vercel project dashboard
+   - Navigate to **Settings** → **Environment Variables**
+   - Ensure all required variables are present:
+     - `MONGODB_URI`
+     - `JWT_SECRET`
+     - `SESSION_SECRET`
+     - `GOOGLE_CLIENT_ID`
+     - `GOOGLE_CLIENT_SECRET`
+     - `EMAIL_USER`
+     - `EMAIL_PASS`
+     - `EMAIL_FROM`
+
+2. **Verify Variable Names**:
+   - Variable names must match exactly (case-sensitive)
+   - No extra spaces or special characters
+
+3. **Check Environment Scope**:
+   - Make sure variables are set for **Production**, **Preview**, and **Development**
+   - Click the environment checkboxes when adding variables
+
+4. **Redeploy After Adding Variables**:
+   - After adding environment variables, trigger a new deployment
+   - Go to **Deployments** tab and click **Redeploy**
+
 ### **Build Errors**
 - Check that all dependencies are in `dependencies` not `devDependencies`
 - Ensure MongoDB connection string is correct
 - Verify all environment variables are set
 
 ### **Database Connection Issues**
-- Check MongoDB Atlas network access (allow all IPs)
+- Check MongoDB Atlas network access (allow all IPs: `0.0.0.0/0`)
 - Verify connection string format
 - Check environment variables in Vercel dashboard
+- Ensure MongoDB Atlas cluster is running
 
 ### **Authentication Issues**
 - Verify JWT_SECRET is set
