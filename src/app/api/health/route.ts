@@ -1,5 +1,5 @@
 // Health check endpoint for Next.js 15 App Router
-import connectDB from '../../../lib/mongodb.js';
+import connectDB from '../../../../lib/mongodb.js';
 
 export async function GET() {
   // Set CORS headers

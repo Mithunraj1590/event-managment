@@ -37,21 +37,48 @@ class ApiClient {
     console.log('API Request:', { url, method: config.method || 'GET', hasToken: !!this.token });
 
     try {
+      console.log('Making fetch request to:', url);
       const response = await fetch(url, config);
-      console.log('API Response:', { status: response.status, statusText: response.statusText, url });
+      console.log('API Response:', { 
+        status: response.status, 
+        statusText: response.statusText, 
+        url,
+        headers: Object.fromEntries(response.headers.entries())
+      });
       
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ message: 'Network error' }));
-        console.error('API Error:', errorData);
-        throw new Error(errorData.message || 'Request failed');
+        let errorData;
+        try {
+          errorData = await response.json();
+        } catch (parseError) {
+          errorData = { 
+            message: `HTTP ${response.status}: ${response.statusText}`,
+            status: response.status,
+            statusText: response.statusText
+          };
+        }
+        console.error('API Error Response:', errorData);
+        throw new Error(errorData.message || `Request failed with status ${response.status}`);
       }
 
       const data = await response.json();
       console.log('API Success:', { endpoint, dataLength: Array.isArray(data) ? data.length : Object.keys(data).length });
       return data;
     } catch (error) {
-      console.error('API Request Failed:', { url, error: error.message, stack: error.stack });
-      throw error;
+      console.error('API Request Failed - Full Error Object:', error);
+      console.error('API Request Failed - Error Type:', typeof error);
+      console.error('API Request Failed - Error Constructor:', error?.constructor?.name);
+      console.error('API Request Failed - Error Message:', error?.message);
+      console.error('API Request Failed - Error Stack:', error?.stack);
+      console.error('API Request Failed - URL:', url);
+      console.error('API Request Failed - Config:', config);
+      
+      // Re-throw with more context
+      if (error instanceof Error) {
+        throw new Error(`API request failed: ${error.message} (URL: ${url})`);
+      } else {
+        throw new Error(`API request failed: Unknown error (URL: ${url})`);
+      }
     }
   }
 

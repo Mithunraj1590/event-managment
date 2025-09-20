@@ -1,8 +1,8 @@
 // Register API route for Next.js 15 App Router
 import jwt from 'jsonwebtoken';
-import connectDB from '../../../../lib/mongodb.js';
-import User from '../../../../models/User.js';
-import { sendVerificationEmail } from '../../../../utils/emailService.js';
+import connectDB from '../../../../../lib/mongodb.js';
+import User from '../../../../../models/User.js';
+import { sendVerificationEmail } from '../../../../../utils/emailService.js';
 
 export async function POST(request: Request) {
   // Set CORS headers

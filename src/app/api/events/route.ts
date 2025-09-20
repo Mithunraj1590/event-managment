@@ -1,8 +1,13 @@
 // Events API route for Next.js 15 App Router
-import Event from '../../../models/Event.js';
+import Event from '../../../../models/Event.js';
 import jwt from 'jsonwebtoken';
-import connectDB from '../../../lib/mongodb.js';
-import User from '../../../models/User.js';
+import connectDB from '../../../../lib/mongodb.js';
+import User from '../../../../models/User.js';
+
+console.log('Events API route loaded');
+console.log('Event model:', Event);
+console.log('User model:', User);
+console.log('connectDB function:', connectDB);
 
 async function authenticateToken(request: Request) {
   const token = request.headers.get('authorization')?.replace('Bearer ', '');
@@ -17,6 +22,11 @@ async function authenticateToken(request: Request) {
 }
 
 export async function GET(request: Request) {
+  console.log('Events API GET endpoint called');
+  console.log('Request URL:', request.url);
+  console.log('Request method:', request.method);
+  console.log('Request headers:', Object.fromEntries(request.headers.entries()));
+  
   // Set CORS headers
   const headers = new Headers();
   headers.set('Access-Control-Allow-Origin', '*');
