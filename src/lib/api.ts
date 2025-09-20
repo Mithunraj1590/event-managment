@@ -1,3 +1,5 @@
+// For Vercel deployment, API routes are served from the same domain
+// For development, we can use a separate API URL if needed
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
 class ApiClient {

@@ -39,7 +39,7 @@ export default function LoginPage() {
 
   const handleGoogleLogin = () => {
     if (typeof window !== 'undefined') {
-      window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/api/auth/google`;
+      window.location.href = '/api/auth/google';
     }
   };
 

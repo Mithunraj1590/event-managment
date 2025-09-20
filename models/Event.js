@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const eventSchema = new mongoose.Schema({
   title: {
@@ -138,4 +138,4 @@ eventSchema.index({ category: 1 });
 eventSchema.index({ status: 1 });
 eventSchema.index({ organizer: 1 });
 
-module.exports = mongoose.model('Event', eventSchema);
+export default mongoose.model('Event', eventSchema);

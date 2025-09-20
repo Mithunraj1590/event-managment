@@ -1,7 +1,7 @@
-import Event from '../../models/Event';
+import Event from '../../models/Event.js';
 import jwt from 'jsonwebtoken';
-import connectDB from '../../lib/mongodb';
-import User from '../../models/User';
+import connectDB from '../../lib/mongodb.js';
+import User from '../../models/User.js';
 
 async function authenticateToken(req) {
   const token = req.headers.authorization?.replace('Bearer ', '');
@@ -16,6 +16,16 @@ async function authenticateToken(req) {
 }
 
 export default async function handler(req, res) {
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   if (req.method === 'GET') {
     // Get all events (public)
     try {
