@@ -195,6 +195,32 @@ Your app now has these API endpoints:
 
 ## 🚨 **Troubleshooting**
 
+### **"Failed to fetch" Error**
+
+This error occurs when the frontend can't connect to the API endpoints. Here's how to debug and fix it:
+
+1. **Check Environment Variables**:
+   - Go to your Vercel project dashboard
+   - Navigate to **Settings** → **Environment Variables**
+   - Ensure `MONGODB_URI` is set correctly
+   - Verify all required variables are present
+
+2. **Test API Endpoints**:
+   - Test the health endpoint: `https://your-app-name.vercel.app/api/health`
+   - Test the test endpoint: `https://your-app-name.vercel.app/api/test`
+   - Check browser console for detailed error messages
+
+3. **Check Vercel Function Logs**:
+   - Go to your Vercel dashboard
+   - Navigate to **Functions** tab
+   - Check the logs for any errors in the API routes
+
+4. **Common Issues**:
+   - Missing environment variables
+   - Incorrect MongoDB connection string
+   - CORS issues (should be fixed with our updates)
+   - Database connection timeout
+
 ### **"MongoDB URL Reference Secret Do Not Exist" Error**
 
 This error occurs when Vercel can't find the environment variables. Here's how to fix it:

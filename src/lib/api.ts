@@ -34,14 +34,25 @@ class ApiClient {
       };
     }
 
-    const response = await fetch(url, config);
-    
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ message: 'Network error' }));
-      throw new Error(errorData.message || 'Request failed');
-    }
+    console.log('API Request:', { url, method: config.method || 'GET', hasToken: !!this.token });
 
-    return response.json();
+    try {
+      const response = await fetch(url, config);
+      console.log('API Response:', { status: response.status, statusText: response.statusText, url });
+      
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ message: 'Network error' }));
+        console.error('API Error:', errorData);
+        throw new Error(errorData.message || 'Request failed');
+      }
+
+      const data = await response.json();
+      console.log('API Success:', { endpoint, dataLength: Array.isArray(data) ? data.length : Object.keys(data).length });
+      return data;
+    } catch (error) {
+      console.error('API Request Failed:', { url, error: error.message, stack: error.stack });
+      throw error;
+    }
   }
 
   // Auth endpoints
